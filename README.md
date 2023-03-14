@@ -22,7 +22,8 @@
 - 无需编译 Godot 源码
 
 ### 1.准备工作
-- C++ 扩展依赖 https://github.com/godotengine/godot-cpp
+- 添加 C++ 扩展
+- `git submodule add -b master https://github.com/godotengine/godot-cpp`
 - `git submodule update --init`
 
 ### 2.使用自定义 GDExtension
