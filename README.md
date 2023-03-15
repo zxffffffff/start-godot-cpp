@@ -9,11 +9,18 @@
 
 ### 1.准备工作
 - 下载 Godot 源码 `https://github.com/godotengine/godot.git`
-- 开发环境 `python -m pip install scons`
+- 开发环境 
+  ```
+  python -m pip install scons
+  ```
 
 ### 2.使用自定义 modules
 - 参考 `cpp_modules`
-- 编译 Godot + cpp_modules `scons -j8 platform=windows custom_modules=C:/path/to/cpp_modules`
+- 编译 Godot + cpp_modules
+  ```
+  cd /path/to/godot
+  scons -j8 platform=windows custom_modules=/path/to/cpp_modules
+  ```
 
 
 ## GDExtension
@@ -26,6 +33,9 @@
 - `git subtree add --prefix=cpp_extensions/godot-cpp https://github.com/godotengine/godot-cpp 4.0 --squash`
 
 ### 2.使用自定义 GDExtension
-- 参考 `SConstruct` `cpp_extensions` `my_app/bin/gdexample.gdextension`
-- 编译 cpp_extensions `scons -j8 platform=windows target=template_release`
-
+- 参考 `cpp_extensions` `my_app/bin/gdexample.gdextension`
+- 编译 cpp_extensions 
+  ```
+  cd cpp_extensions
+  scons -j8 platform=windows target=template_release
+  ```

@@ -11,3 +11,6 @@ release-Android/
 release-iOS/
 release-Windows/
 release-macOS/
+
+# Android debug key
+debug.keystore

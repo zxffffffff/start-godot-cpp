@@ -2,7 +2,7 @@
 import os
 import sys
 
-env = SConscript("cpp_extensions/godot-cpp/SConstruct")
+env = SConscript("godot-cpp/SConstruct")
 
 # For reference:
 # - CCFLAGS are compilation flags shared between C and C++
@@ -13,19 +13,19 @@ env = SConscript("cpp_extensions/godot-cpp/SConstruct")
 # - LINKFLAGS are for linking flags
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=["cpp_extensions/"])
-sources = Glob("cpp_extensions/example/*.cpp")
+env.Append(CPPPATH=["/"])
+sources = Glob("example/*.cpp")
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(
-        "my_app/bin/libgdexample.{}.{}.framework/libgdexample.{}.{}".format(
+        "../my_app/bin/libgdexample.{}.{}.framework/libgdexample.{}.{}".format(
             env["platform"], env["target"], env["platform"], env["target"]
         ),
         source=sources,
     )
 else:
     library = env.SharedLibrary(
-        "my_app/bin/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+        "../my_app/bin/libgdexample{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
         source=sources,
     )
 
