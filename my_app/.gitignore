@@ -6,3 +6,8 @@ bin/*.dll
 bin/*.lib
 bin/*.exp
 bin/*.framework
+
+release-Android/
+release-iOS/
+release-Windows/
+release-macOS/
