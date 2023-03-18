@@ -8,7 +8,10 @@
 - 每次更改都需要编译 Godot 源码（支持动态/静态编译）
 
 ### 1.准备工作
-- 下载 Godot 源码 `https://github.com/godotengine/godot.git`
+- 下载 Godot 源码（已添加subtree）
+  ```
+  git subtree add --prefix=godot https://github.com/godotengine/godot 4.0 --squash
+  ```
 - 开发环境 
   ```
   python -m pip install scons
@@ -39,8 +42,10 @@
 - 无需编译 Godot 源码
 
 ### 1.准备工作
-- 添加 C++ 扩展（已添加）
-- `git subtree add --prefix=cpp_extensions/godot-cpp https://github.com/godotengine/godot-cpp 4.0 --squash`
+- 下载 C++ 扩展源码（已添加subtree）
+  ```
+  git subtree add --prefix=cpp_extensions/godot-cpp https://github.com/godotengine/godot-cpp 4.0 --squash
+  ```
 
 ### 2.使用自定义 GDExtension
 - 参考 https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html
