@@ -298,7 +298,8 @@ void InspectorDock::_prepare_resource_extra_popup() {
 	popup->set_item_disabled(popup->get_item_index(RESOURCE_EDIT_CLIPBOARD), r.is_null());
 
 	Ref<Resource> current_res = _get_current_resource();
-	popup->set_item_disabled(popup->get_item_index(RESOURCE_SHOW_IN_FILESYSTEM), current_res.is_null() || current_res->is_built_in());
+	ERR_FAIL_COND(current_res.is_null());
+	popup->set_item_disabled(popup->get_item_index(RESOURCE_SHOW_IN_FILESYSTEM), current_res->is_built_in());
 }
 
 Ref<Resource> InspectorDock::_get_current_resource() const {

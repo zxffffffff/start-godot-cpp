@@ -1010,14 +1010,12 @@ void GDScript::_bind_methods() {
 }
 
 void GDScript::set_path(const String &p_path, bool p_take_over) {
+	String old_path = path;
 	if (is_root_script()) {
 		Script::set_path(p_path, p_take_over);
 	}
-
-	String old_path = path;
-	path = p_path;
+	this->path = p_path;
 	GDScriptCache::move_script(old_path, p_path);
-
 	for (KeyValue<StringName, Ref<GDScript>> &kv : subclasses) {
 		kv.value->set_path(p_path, p_take_over);
 	}

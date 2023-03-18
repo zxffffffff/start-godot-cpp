@@ -117,10 +117,8 @@ void MeshInstance3D::set_mesh(const Ref<Mesh> &p_mesh) {
 	mesh = p_mesh;
 
 	if (mesh.is_valid()) {
-		// If mesh is a PrimitiveMesh, calling get_rid on it can trigger a changed callback
-		// so do this before connecting _mesh_changed.
-		set_base(mesh->get_rid());
 		mesh->connect(CoreStringNames::get_singleton()->changed, callable_mp(this, &MeshInstance3D::_mesh_changed));
+		set_base(mesh->get_rid());
 		_mesh_changed();
 	} else {
 		blend_shape_tracks.clear();

@@ -399,12 +399,8 @@ void EditorResourcePicker::_edit_menu_cbk(int p_which) {
 			file_system_dock->navigate_to_path(edited_resource->get_path());
 
 			// Ensure that the FileSystem dock is visible.
-			if (file_system_dock->get_window() == get_tree()->get_root()) {
-				TabContainer *tab_container = (TabContainer *)file_system_dock->get_parent_control();
-				tab_container->set_current_tab(tab_container->get_tab_idx_from_control(file_system_dock));
-			} else {
-				file_system_dock->get_window()->grab_focus();
-			}
+			TabContainer *tab_container = (TabContainer *)file_system_dock->get_parent_control();
+			tab_container->set_current_tab(tab_container->get_tab_idx_from_control(file_system_dock));
 		} break;
 
 		default: {

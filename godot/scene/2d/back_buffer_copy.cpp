@@ -62,7 +62,6 @@ Rect2 BackBufferCopy::get_anchorable_rect() const {
 void BackBufferCopy::set_rect(const Rect2 &p_rect) {
 	rect = p_rect;
 	_update_copy_mode();
-	item_rect_changed();
 }
 
 Rect2 BackBufferCopy::get_rect() const {

@@ -151,12 +151,6 @@ namespace Godot.SourceGenerators
                     continue;
                 }
 
-                if (property.ExplicitInterfaceImplementations.Length > 0)
-                {
-                    Common.ReportExportedMemberIsExplicitInterfaceImplementation(context, property);
-                    continue;
-                }
-
                 var propertyType = property.Type;
                 var marshalType = MarshalUtils.ConvertManagedTypeToMarshalType(propertyType, typeCache);
 

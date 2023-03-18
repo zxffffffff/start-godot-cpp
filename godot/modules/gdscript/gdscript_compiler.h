@@ -137,7 +137,7 @@ class GDScriptCompiler {
 	int err_column = 0;
 	StringName source;
 	String error;
-	GDScriptParser::ExpressionNode *awaited_node = nullptr;
+	bool within_await = false;
 
 public:
 	static void convert_to_initializer_type(Variant &p_variant, const GDScriptParser::VariableNode *p_node);

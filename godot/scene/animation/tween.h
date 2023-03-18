@@ -61,8 +61,6 @@ class MethodTweener;
 class Tween : public RefCounted {
 	GDCLASS(Tween, RefCounted);
 
-	friend class PropertyTweener;
-
 public:
 	enum TweenProcessMode {
 		TWEEN_PROCESS_PHYSICS,

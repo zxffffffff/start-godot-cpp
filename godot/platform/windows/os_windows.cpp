@@ -69,11 +69,6 @@ __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
 #define WM_POINTERUPDATE 0x0245
 #endif
 
-// Missing in MinGW headers before 8.0.
-#ifndef DWRITE_FONT_WEIGHT_SEMI_LIGHT
-#define DWRITE_FONT_WEIGHT_SEMI_LIGHT (DWRITE_FONT_WEIGHT)350
-#endif
-
 #if defined(__GNUC__)
 // Workaround GCC warning from -Wcast-function-type.
 #define GetProcAddress (void *)GetProcAddress
@@ -678,8 +673,9 @@ Error OS_Windows::execute(const String &p_path, const List<String> &p_arguments,
 		}
 
 		CloseHandle(pipe[0]); // Close pipe read handle.
+	} else {
+		WaitForSingleObject(pi.pi.hProcess, INFINITE);
 	}
-	WaitForSingleObject(pi.pi.hProcess, INFINITE);
 
 	if (r_exitcode) {
 		DWORD ret2;

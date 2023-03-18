@@ -35,7 +35,6 @@ namespace GodotTools
         private PopupMenu _menuPopup;
 
         private AcceptDialog _errorDialog;
-        private ConfirmationDialog _confirmCreateSlnDialog;
 
         private Button _bottomPanelBtn;
         private Button _toolBarBuildButton;
@@ -100,7 +99,7 @@ namespace GodotTools
                     pr.Step("Done".TTR());
 
                     // Here, after all calls to progress_task_step
-                    CallDeferred(nameof(_ShowDotnetFeatures));
+                    CallDeferred(nameof(_RemoveCreateSlnMenuOption));
                 }
                 else
                 {
@@ -111,8 +110,9 @@ namespace GodotTools
             }
         }
 
-        private void _ShowDotnetFeatures()
+        private void _RemoveCreateSlnMenuOption()
         {
+            _menuPopup.RemoveItem(_menuPopup.GetItemIndex((int)MenuOptions.CreateSln));
             _bottomPanelBtn.Show();
             _toolBarBuildButton.Show();
         }
@@ -122,17 +122,8 @@ namespace GodotTools
             switch ((MenuOptions)id)
             {
                 case MenuOptions.CreateSln:
-                {
-                    if (File.Exists(GodotSharpDirs.ProjectSlnPath) || File.Exists(GodotSharpDirs.ProjectCsProjPath))
-                    {
-                        ShowConfirmCreateSlnDialog();
-                    }
-                    else
-                    {
-                        CreateProjectSolution();
-                    }
+                    CreateProjectSolution();
                     break;
-                }
                 case MenuOptions.SetupGodotNugetFallbackFolder:
                 {
                     try
@@ -176,13 +167,6 @@ namespace GodotTools
             _errorDialog.Title = title;
             _errorDialog.DialogText = message;
             _errorDialog.PopupCentered();
-        }
-
-        public void ShowConfirmCreateSlnDialog()
-        {
-            _confirmCreateSlnDialog.Title = "C# solution already exists. This will override the existing C# project file, any manual changes will be lost.".TTR();
-            _confirmCreateSlnDialog.DialogText = "Create C# solution".TTR();
-            _confirmCreateSlnDialog.PopupCentered();
         }
 
         private static string _vsCodePath = string.Empty;
@@ -436,10 +420,6 @@ namespace GodotTools
             _errorDialog = new AcceptDialog();
             editorBaseControl.AddChild(_errorDialog);
 
-            _confirmCreateSlnDialog = new ConfirmationDialog();
-            _confirmCreateSlnDialog.Confirmed += () => CreateProjectSolution();
-            editorBaseControl.AddChild(_confirmCreateSlnDialog);
-
             MSBuildPanel = new MSBuildPanel();
             MSBuildPanel.Ready += () =>
                 MSBuildPanel.BuildOutputView.BuildStateChanged += BuildStateChanged;
@@ -473,8 +453,8 @@ namespace GodotTools
             {
                 _bottomPanelBtn.Hide();
                 _toolBarBuildButton.Hide();
+                _menuPopup.AddItem("Create C# solution".TTR(), (int)MenuOptions.CreateSln);
             }
-            _menuPopup.AddItem("Create C# solution".TTR(), (int)MenuOptions.CreateSln);
 
             _menuPopup.IdPressed += _MenuOptionPressed;
 

@@ -221,7 +221,9 @@ bool ProgressDialog::task_step(const String &p_task, const String &p_state, int 
 
 	t.state->set_text(p_state);
 	last_progress_tick = OS::get_singleton()->get_ticks_usec();
-	DisplayServer::get_singleton()->process_events();
+	if (cancel_hb->is_visible()) {
+		DisplayServer::get_singleton()->process_events();
+	}
 
 #ifndef ANDROID_ENABLED
 	Main::iteration(); // this will not work on a lot of platforms, so it's only meant for the editor

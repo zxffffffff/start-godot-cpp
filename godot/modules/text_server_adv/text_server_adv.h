@@ -158,7 +158,7 @@ class TextServerAdvanced : public TextServerExtension {
 
 	// ICU support data.
 
-	static bool icu_data_loaded;
+	bool icu_data_loaded = false;
 	mutable USet *allowed = nullptr;
 	mutable USpoofChecker *sc_spoof = nullptr;
 	mutable USpoofChecker *sc_conf = nullptr;
