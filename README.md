@@ -30,7 +30,7 @@
 - **Windows 编译 Godot.exe**
   ```Bash
   cd godot
-  scons -j8 platform=windows custom_modules=../cpp_modules vsproj=yes
+  scons -j8 platform=windows custom_modules=../cpp_modules
   ```
 - **macOS 编译 Godot.app**
   ```Bash
