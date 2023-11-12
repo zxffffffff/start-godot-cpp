@@ -9,8 +9,10 @@ class GDExample : public Sprite2D {
     GDCLASS(GDExample, Sprite2D)
 
 private:
-    float time_passed;
-    float amplitude;
+    double time_passed;
+    double time_emit;
+    double amplitude;
+    double speed;
 
 protected:
     static void _bind_methods();
@@ -18,11 +20,14 @@ protected:
 public:
     GDExample();
     ~GDExample();
-    
-    void set_amplitude(const float amplitude);
-    float get_amplitude() const;
 
-    void _process(float delta);
+    void _process(double delta);
+    
+    void set_amplitude(const double p_amplitude);
+    double get_amplitude() const;
+    
+    void set_speed(const double p_speed);
+    double get_speed() const;
 };
 
 }

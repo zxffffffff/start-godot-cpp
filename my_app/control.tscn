@@ -13,5 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_iydp7")
 
 [node name="GDExample" type="GDExample" parent="."]
-position = Vector2(15.3955, 19.1004)
+position = Vector2(11.7406, 19.914)
 texture = ExtResource("2_ybcue")
+
+[connection signal="position_changed" from="GDExample" to="." method="_on_gd_example_position_changed"]
