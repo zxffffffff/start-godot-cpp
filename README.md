@@ -4,14 +4,14 @@
 # Godot 4
 - 有了重大更新和改变，有很多不兼容 Godot 3 的内容
 - 文档选择 en 再手动翻译，**中文文档很多过时内容**
-- 选择最新的 `tag 4.0` 分支下载，确认是 **stable** 版本
+- 选择最新的 `tag 4.x` 分支下载，确认是 **stable** 版本
 
 ## C++ modules
 - 比 GDExtension 提供更底层的接口支持
 - 每次更改都需要编译 Godot 源码（支持动态/静态编译）
 
 ### 1.准备工作
-- 下载 Godot 源码（已下载至./godot）
+- 下载 Godot 源码（已使用 `git subtree` 下载至 `./godot`）
   https://github.com/godotengine/godot.git
 - 编译参考
   https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html
@@ -50,7 +50,7 @@
 - 无需编译 Godot 源码
 
 ### 1.准备工作
-- 下载 C++ 扩展源码（已添加./cpp_extensions/godot-cpp）
+- 下载 C++ 扩展源码（已使用 `git subtree` 下载至 `./cpp_extensions/godot-cpp`）
   https://github.com/godotengine/godot-cpp.git
 
 ### 2.使用自定义 GDExtension
