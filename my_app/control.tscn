@@ -12,8 +12,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iydp7")
 
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 151.0
+offset_right = 672.0
+offset_bottom = 411.0
+placeholder_text = "placeholder text ..."
+
 [node name="GDExample" type="GDExample" parent="."]
-position = Vector2(11.7406, 19.914)
+amplitude = 123.0
+speed = 1.23
+position = Vector2(165.111, 61.5292)
 texture = ExtResource("2_ybcue")
+
+[node name="Label" type="Label" parent="GDExample"]
+offset_left = -81.0
+offset_top = 66.0
+offset_right = 83.0
+offset_bottom = 156.0
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [connection signal="position_changed" from="GDExample" to="." method="_on_gd_example_position_changed"]
