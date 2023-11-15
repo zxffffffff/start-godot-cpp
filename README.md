@@ -26,6 +26,10 @@
 > https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html
 
 #### **安装开发依赖** `Python` `scons`
+
+官网下载安装python最新版，macOS需要运行`Install Certificates.command`信任证书
+> https://www.python.org/
+
 ```Bash
 python -m pip install scons
 ```
@@ -37,17 +41,24 @@ python -m pip install scons
 > https://emscripten.org/
 
 ```Bash
-cd /path/to/user/app
+cd # 软件安装目录，mac建议“/Users/xxx”，win建议“C://Program Files”
 git clone https://github.com/emscripten-core/emsdk.git
 cd emsdk
+git pull
+
 # win
-./emsdk.bat install latest     # 下载安装tools
-./emsdk.bat activate latest    # 激活
-./emsdk_env.bat ./emsdk_env.sh # 添加到环境变量
+./emsdk.bat install latest  # 下载安装tools
+./emsdk.bat activate latest # 激活当前sdk
+./emsdk_env.bat             # 添加环境变量
+./emcmdprompt.bat           # 打开terminal新窗口（建议）
+
 # mac
 ./emsdk install latest  
 ./emsdk activate latest 
-source ./emsdk_env.sh   
+source ./emsdk_env.sh       # 添加环境变量（每次打开terminal新窗口都要调用！）
+
+# 检查
+emcc --check
 ```
 
 ### 【1.2】源码编译 Editor & Template
@@ -86,8 +97,9 @@ sudo xattr -r -d com.apple.quarantine bin/Godot.app
 #### **Web 编译 Template.zip**
 ```Bash
 cd godot
+# 注意需要 emsdk_env 环境，否则识别不到 web
 # JS单例存在安全风险，可选关闭：javascript_eval=no
-# 开启 GDExtension 支持：dlink_enabled=yes
+# 开启 GDExtension：dlink_enabled=yes
 scons -j8 platform=web custom_modules=../cpp_modules target=template_debug javascript_eval=no dlink_enabled=yes
 scons -j8 platform=web custom_modules=../cpp_modules target=template_release javascript_eval=no dlink_enabled=yes
 ```
