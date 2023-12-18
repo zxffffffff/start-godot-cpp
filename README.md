@@ -19,8 +19,8 @@
 
 ### 【1.1】准备工作
 
-#### 下载 Godot 源码（已使用 `git subtree` 下载至 `./godot`）
-> https://github.com/godotengine/godot.git
+#### 下载 Godot 源码（使用 `git submodule` 添加至 `./godot`）
+> git submodule add -b 4.2 https://github.com/godotengine/godot.git ./godot  
 
 编译流程文档：
 > https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html
@@ -112,8 +112,8 @@ scons -j8 platform=web custom_modules=../cpp_modules target=template_release jav
 
 ### 【2.1】准备工作
 
-下载 C++ 扩展源码（已使用 `git subtree` 下载至 `./cpp_extensions/godot-cpp`）
-> https://github.com/godotengine/godot-cpp.git
+下载 C++ 扩展源码（使用 `git submodule` 添加至 `./cpp_extensions/godot-cpp`）
+> git submodule add -b 4.2 https://github.com/godotengine/godot-cpp.git ./cpp_extensions/godot-cpp
 
 #### **4.1 增加步骤** 生成扩展元数据
 ```Bash
