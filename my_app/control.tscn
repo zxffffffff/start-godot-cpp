@@ -23,7 +23,7 @@ placeholder_text = "placeholder text ..."
 [node name="GDExample" type="GDExample" parent="."]
 amplitude = 123.0
 speed = 1.23
-position = Vector2(78.5481, 15.537)
+position = Vector2(109.578, 0.413353)
 texture = ExtResource("2_ybcue")
 
 [node name="Label" type="Label" parent="GDExample"]
