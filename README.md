@@ -25,6 +25,7 @@
 #### 1-1-1、下载 Godot 源码 (使用 `git submodule` 添加至 `./godot`)
 
 ```bash
+# 已添加，无需执行，仅作参考
 git submodule add -b 4.2 https://github.com/godotengine/godot.git ./godot 
 ```
 
@@ -36,12 +37,12 @@ git submodule add -b 4.2 https://github.com/godotengine/godot.git ./godot
 python -m pip install scons
 ```
 
-#### 1-1-3、**4.2 新增 `C#` 支持，手动安装 `.NET SDK 6.0+`**
+#### 1-1-3、**4.2 新增 `C#` 支持，手动安装 `.NET SDK`**
 
 下载安装：https://dotnet.microsoft.com/download
 
 ```bash
-# 检查安装版本
+# 检查安装版本，最低 6.0+，建议 8.0+
 dotnet --info
 ```
 
@@ -76,7 +77,9 @@ emcc --check
 
 ### 1-2、源码编译 Editor & Template
 
-参考：https://docs.godotengine.org/en/stable/contributing/development/core_and_modules/custom_modules_in_cpp.html
+C++ modules 参考：https://docs.godotengine.org/en/stable/contributing/development/core_and_modules/custom_modules_in_cpp.html
+
+C# 参考：https://docs.godotengine.org/en/stable/contributing/development/compiling/compiling_with_dotnet.html
 
 - 平台 `platform=windows`，`platform=macos`，`platform=web`
 
@@ -108,8 +111,11 @@ scons -j8 platform=macos custom_modules=../cpp_modules target=template_release m
 # 需要额外的命令来生成.app
 cp -r misc/dist/macos_tools.app bin/Godot.app
 mkdir -p bin/Godot.app/Contents/MacOS
-cp bin/godot.macos.editor.arm64 bin/Godot.app/Contents/MacOS/Godot
+cp bin/<godot_editor> bin/Godot.app/Contents/MacOS/Godot
 chmod +x bin/Godot.app/Contents/MacOS/Godot
+
+# C# 还需拷贝 GodotSharp，参考 1-2-4
+cp -R bin/GodotSharp bin/Godot.app/Contents/Resources/GodotSharp
 
 # 解决安全提示 “已损坏，无法打开。 您应该将它移到废纸篓”
 sudo xattr -r -d com.apple.quarantine bin/Godot.app
@@ -133,10 +139,10 @@ scons -j8 platform=web custom_modules=../cpp_modules target=template_release jav
 cd godot
 
 # Generate glue sources
-./bin/<godot_mono_binary> --headless --generate-mono-glue modules/mono/glue
+./bin/<godot_editor_mono> --headless --generate-mono-glue modules/mono/glue
 
-# Build .NET assemblies
-py ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --godot-platform=windows
+# Build .NET assemblies <windows, macos, linux>
+python ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --godot-platform=<platform>
 ```
 
 
@@ -149,6 +155,7 @@ py ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --g
 下载 C++ 扩展源码 (使用 `git submodule` 添加至 `./cpp_extensions/godot-cpp`)
 
 ```bash
+# 已添加，无需执行，仅作参考
 git submodule add -b 4.2 https://github.com/godotengine/godot-cpp.git ./cpp_extensions/godot-cpp
 ```
 
@@ -157,7 +164,7 @@ git submodule add -b 4.2 https://github.com/godotengine/godot-cpp.git ./cpp_exte
 ```bash
 cd godot/bin
 
-<godot_console> --dump-extension-api extension_api.json
+<godot_editor> --dump-extension-api extension_api.json
 ```
 
 ### 2-2、编译扩展库
@@ -173,7 +180,7 @@ cd godot/bin
 ```bash
 cd cpp_extensions
 
-scons -j8 platform=windows custom_api_file=../godot/bin/extension_api.json
+scons -j8 platform=windows custom_api_file=../godot/bin/extension_api.json target=template_debug
 scons -j8 platform=windows custom_api_file=../godot/bin/extension_api.json target=template_release
 ```
 
@@ -182,7 +189,7 @@ scons -j8 platform=windows custom_api_file=../godot/bin/extension_api.json targe
 ```bash
 cd cpp_extensions
 
-scons -j8 platform=macos custom_api_file=../godot/bin/extension_api.json
+scons -j8 platform=macos custom_api_file=../godot/bin/extension_api.json target=template_debug
 scons -j8 platform=macos custom_api_file=../godot/bin/extension_api.json target=template_release
 ```
 
