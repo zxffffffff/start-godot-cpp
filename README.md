@@ -9,7 +9,7 @@
 
 文档选择 en 再手动翻译，**中文文档很多过时内容**。
 
-版本更新不兼容历史版本 (3.x -> 4.0 -> 4.1 -> 4.2)参考文档：https://docs.godotengine.org/zh-cn/4.x/tutorials/migrating/index.html
+版本更新不兼容历史版本 (3.x -> 4.0 -> 4.1 -> 4.2) 参考文档：https://docs.godotengine.org/zh-cn/4.x/tutorials/migrating/index.html
 
 
 ## 1、源码编译 (C++ modules 和 C#)
@@ -142,7 +142,8 @@ cd godot
 ./bin/<godot_editor_mono> --headless --generate-mono-glue modules/mono/glue
 
 # Build .NET assemblies <windows, macos, linux>
-python ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --godot-platform=<platform>
+# --push-nupkgs-local 添加到本地源
+python ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --push-nupkgs-local=./bin/MyLocalNugetSource --godot-platform=<platform>
 ```
 
 
