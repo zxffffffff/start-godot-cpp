@@ -144,6 +144,10 @@ cd godot
 # Build .NET assemblies <windows, macos, linux>
 # --push-nupkgs-local 添加到本地源
 python ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --push-nupkgs-local=./bin/MyLocalNugetSource --godot-platform=<platform>
+
+# 项目报错找不到 Godot.NET.Sdk，需要执行命令恢复
+cd my_app
+nuget restore
 ```
 
 
