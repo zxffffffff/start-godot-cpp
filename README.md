@@ -169,6 +169,7 @@ git submodule add -b 4.2 https://github.com/godotengine/godot-cpp.git ./cpp_exte
 ```bash
 cd godot/bin
 
+# 注意 macOS 命令行位于 Godot.app/Contents/MacOS/Godot
 <godot_editor> --dump-extension-api extension_api.json
 ```
 
