@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d147qrs3x3stl"]
+[gd_scene load_steps=3 format=3 uid="uid://d147qrs3x3stl"]
 
 [ext_resource type="Script" path="res://new_script.gd" id="1_iydp7"]
 [ext_resource type="Texture2D" uid="uid://bj7qk13wbgqyq" path="res://icon.svg" id="2_ybcue"]
-[ext_resource type="Script" path="res://new_csharp.cs" id="3_3n71e"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -24,7 +23,7 @@ placeholder_text = "placeholder text ..."
 [node name="GDExample" type="GDExample" parent="."]
 amplitude = 123.0
 speed = 1.23
-position = Vector2(242.718, 19.2051)
+position = Vector2(96.7538, 51.1208)
 texture = ExtResource("2_ybcue")
 
 [node name="Label" type="Label" parent="GDExample"]
@@ -38,6 +37,5 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="NodeCS" type="Node" parent="."]
-script = ExtResource("3_3n71e")
 
 [connection signal="position_changed" from="GDExample" to="." method="_on_gd_example_position_changed"]

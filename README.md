@@ -99,7 +99,7 @@ scons -j8 platform=windows custom_modules=../cpp_modules target=template_debug m
 scons -j8 platform=windows custom_modules=../cpp_modules target=template_release module_mono_enabled=yes
 ```
 
-#### 1-2-2、**macOS 编译 Godot.app 和 template.so**
+#### 1-2-2、**macOS 编译 Godot.app 和 template.zip**
 
 ```bash
 cd godot
@@ -108,11 +108,22 @@ scons -j8 platform=macos custom_modules=../cpp_modules target=editor module_mono
 scons -j8 platform=macos custom_modules=../cpp_modules target=template_debug module_mono_enabled=yes
 scons -j8 platform=macos custom_modules=../cpp_modules target=template_release module_mono_enabled=yes
 
-# 需要额外的命令来生成.app
+# 需要额外的命令来生成 Godot.app
 cp -r misc/dist/macos_tools.app bin/Godot.app
 mkdir -p bin/Godot.app/Contents/MacOS
-cp bin/<godot_editor> bin/Godot.app/Contents/MacOS/Godot
+cp bin/godot.macos.editor.arm64 bin/Godot.app/Contents/MacOS/Godot
 chmod +x bin/Godot.app/Contents/MacOS/Godot
+
+# 需要额外的命令来生成 macos_template.zip
+lipo -create bin/godot.macos.template_release.x86_64 bin/godot.macos.template_release.arm64 -output bin/godot.macos.template_release.universal
+lipo -create bin/godot.macos.template_debug.x86_64 bin/godot.macos.template_debug.arm64 -output bin/godot.macos.template_debug.universal
+
+cp -r misc/dist/macos_template.app bin/macos_template.app
+mkdir -p bin/macos_template.app/Contents/MacOS
+cp bin/godot.macos.template_release.universal bin/macos_template.app/Contents/MacOS/godot_macos_release.universal
+cp bin/godot.macos.template_debug.universal bin/macos_template.app/Contents/MacOS/godot_macos_debug.universal
+chmod +x bin/macos_template.app/Contents/MacOS/godot_macos*
+zip -q -9 -r bin/macos_template.zip bin/macos_template.app
 
 # C# 还需拷贝 GodotSharp，参考 1-2-4
 cp -R bin/GodotSharp bin/Godot.app/Contents/Resources/GodotSharp
@@ -169,8 +180,8 @@ git submodule add -b 4.2 https://github.com/godotengine/godot-cpp.git ./cpp_exte
 ```bash
 cd godot/bin
 
-# 注意 macOS 命令行位于 Godot.app/Contents/MacOS/Godot
-<godot_editor> --dump-extension-api extension_api.json
+# 注意 macOS 命令行位于
+Godot.app/Contents/MacOS/Godot --dump-extension-api extension_api.json
 ```
 
 ### 2-2、编译扩展库
