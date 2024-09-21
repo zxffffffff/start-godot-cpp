@@ -21,9 +21,9 @@ offset_bottom = 411.0
 placeholder_text = "placeholder text ..."
 
 [node name="GDExample" type="GDExample" parent="."]
-amplitude = 123.0
-speed = 1.23
-position = Vector2(96.7538, 51.1208)
+amplitude = 300.0
+speed = 0.5
+position = Vector2(35.0287, 82.2919)
 texture = ExtResource("2_ybcue")
 
 [node name="Label" type="Label" parent="GDExample"]

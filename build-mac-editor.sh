@@ -13,7 +13,7 @@ rm -rf bin/Godot.app
 rm -f  bin/godot.macos.editor.arm64
 rm -f  bin/extension_api.json
 
-scons -j8 platform=macos custom_modules=../cpp_modules target=editor arch=arm64
+scons platform=macos custom_modules=../cpp_modules target=editor arch=arm64
 
 # 需要额外的命令来生成 Godot.app
 cp -r misc/dist/macos_tools.app bin/Godot.app

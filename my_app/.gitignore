@@ -6,11 +6,13 @@ bin/*.dll
 bin/*.lib
 bin/*.exp
 bin/*.framework
+bin/*.wasm
 
 release-Android/
 release-iOS/
 release-Windows/
 release-macOS/
+release-Web/
 
 # Android debug key
 debug.keystore

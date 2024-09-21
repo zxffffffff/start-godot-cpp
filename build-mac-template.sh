@@ -11,17 +11,12 @@ python -m pip install scons
 cd ${root_path}/godot
 rm -rf bin/macos_template.app
 rm -f  bin/macos_template.zip
-rm -f  bin/godot.macos.template_debug.x86_64
-rm -f  bin/godot.macos.template_debug.arm64
-rm -f  bin/godot.macos.template_debug.universal
-rm -f  bin/godot.macos.template_release.x86_64
-rm -f  bin/godot.macos.template_release.arm64
-rm -f  bin/godot.macos.template_release.universal
+rm -f  bin/godot.macos.template_*
 
-scons -j8 platform=macos custom_modules=../cpp_modules target=template_debug arch=x86_64
-scons -j8 platform=macos custom_modules=../cpp_modules target=template_debug arch=arm64
-scons -j8 platform=macos custom_modules=../cpp_modules target=template_release arch=x86_64
-scons -j8 platform=macos custom_modules=../cpp_modules target=template_release arch=arm64
+scons platform=macos custom_modules=../cpp_modules target=template_debug arch=x86_64
+scons platform=macos custom_modules=../cpp_modules target=template_debug arch=arm64
+scons platform=macos custom_modules=../cpp_modules target=template_release arch=x86_64
+scons platform=macos custom_modules=../cpp_modules target=template_release arch=arm64
 
 # 需要额外的命令来生成 Godot.app
 cp -r misc/dist/macos_tools.app bin/Godot.app

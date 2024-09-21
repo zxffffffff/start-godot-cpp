@@ -2,15 +2,13 @@
 
 一个 Godot 脚手架项目，使用源码编译扩展 C++ modules/GDExtension 和 C#，导出到所有平台 (PC, Mobile, Web)
 
-
-# Godot 
+# Godot
 
 选择最新的 `tag 4.x` 分支下载，确认是 **stable** 版本。
 
 文档选择 en 再手动翻译，**中文文档很多过时内容**。
 
-版本更新不兼容历史版本 (3.x -> 4.0 -> 4.1 -> 4.2) 参考文档：https://docs.godotengine.org/zh-cn/4.x/tutorials/migrating/index.html
-
+版本更新不兼容历史版本 (3.x -> 4.0 -> 4.1 -> 4.2) 参考文档：<https://docs.godotengine.org/zh-cn/4.x/tutorials/migrating/index.html>
 
 ## 1、源码编译 (C++ modules 和 C#)
 
@@ -20,7 +18,7 @@
 
 ### 1-1、准备工作
 
-编译流程文档：https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html
+编译流程文档：<https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html>
 
 #### 1-1-1、下载 Godot 源码 (使用 `git submodule` 添加至 `./godot`)
 
@@ -31,7 +29,7 @@ git submodule add -b 4.2 https://github.com/godotengine/godot.git ./godot
 
 #### 1-1-2、**安装编译依赖** `Python` `scons`
 
-官网下载安装python最新版，macOS需要运行 `Install Certificates.command` 信任证书：https://www.python.org/
+官网下载安装python最新版，macOS需要运行 `Install Certificates.command` 信任证书：<https://www.python.org/>
 
 ```bash
 python -m pip install scons
@@ -39,7 +37,7 @@ python -m pip install scons
 
 #### 1-1-3、**4.2 新增 `C#` 支持，手动安装 `.NET SDK`**
 
-下载安装：https://dotnet.microsoft.com/download
+下载安装：<https://dotnet.microsoft.com/download>
 
 ```bash
 # 检查安装版本，最低 6.0+，建议 8.0+
@@ -48,11 +46,11 @@ dotnet --info
 
 #### 1-1-4、**macOS 手动安装 Vulkan**
 
-下载安装：https://vulkan.lunarg.com/sdk/home
+下载安装：<https://vulkan.lunarg.com/sdk/home>
 
 #### 1-1-5、**web 手动安装 Emscripten**
 
-下载安装：https://emscripten.org/
+下载安装：<https://emscripten.org/>
 
 ```bash
 cd # 软件安装目录，mac建议“/Users/xxx”，win建议“C://Program Files”
@@ -77,9 +75,9 @@ emcc --check
 
 ### 1-2、源码编译 Editor & Template
 
-C++ modules 参考：https://docs.godotengine.org/en/stable/contributing/development/core_and_modules/custom_modules_in_cpp.html
+C++ modules 参考：<https://docs.godotengine.org/en/stable/contributing/development/core_and_modules/custom_modules_in_cpp.html>
 
-C# 参考：https://docs.godotengine.org/en/stable/contributing/development/compiling/compiling_with_dotnet.html
+C# 参考：<https://docs.godotengine.org/en/stable/contributing/development/compiling/compiling_with_dotnet.html>
 
 - 平台 `platform=windows`，`platform=macos`，`platform=web`
 
@@ -161,7 +159,6 @@ cd my_app
 nuget restore
 ```
 
-
 ## 2、GDExtension (C++ binding)
 
 引擎与脚本交互的一层抽象层，可以支持任意编程语言 (C++)，无需编译 Godot 源码。
@@ -186,7 +183,7 @@ Godot.app/Contents/MacOS/Godot --dump-extension-api extension_api.json
 
 ### 2-2、编译扩展库
 
-参考：https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html
+参考：<https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html>
 
 - 编译 Debug `target=template_debug` (**缺省**)
 - 编译 Release `target=template_release`
@@ -215,6 +212,7 @@ scons -j8 platform=macos custom_api_file=../godot/bin/extension_api.json target=
 配置文件：`my_app/bin/gdexample.gdextension`
 
 配置参数：
+
 ```bash
 macos.debug = "res://bin/libgdexample.macos.template_debug.framework"
 macos.release = "res://bin/libgdexample.macos.template_release.framework"

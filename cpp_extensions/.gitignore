@@ -1,3 +1,10 @@
 .sconsign.dblite
 *.obj
 *.os
+*.o
+
+bin/*.so
+bin/*.dll
+bin/*.lib
+bin/*.exp
+bin/*.framework
