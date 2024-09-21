@@ -2,7 +2,7 @@
 
 一个 Godot 脚手架项目，使用源码编译扩展 C++ modules/GDExtension 和 C#，导出到所有平台 (PC, Mobile, Web)
 
-![image](https://github.com/zxffffffff/start-godot-cpp/tree/GitHub-Pages/docs/QQ20240921-210428.png)
+![image](https://github.com/zxffffffff/start-godot-cpp/blob/GitHub-Pages/docs/QQ20240921-210428.png)
 
 # Godot
 
